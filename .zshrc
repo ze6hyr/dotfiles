@@ -121,6 +121,7 @@ alias n=nvim
 alias v=vim
 alias qb=qutebrowser
 alias :q=exit
+alias l=ls -la
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$PATH:$HOME/.local/bin"
