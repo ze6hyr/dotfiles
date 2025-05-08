@@ -1,34 +1,40 @@
 #!/bin/bash
 
-set -e  # exit on error
+set -e
 
 DOTFILES_DIR=~/dotfiles
 BACKUP_DIR=~/.dotfiles_backup_$(date +%s)
 
-echo "📦 Backing up existing dotfiles to $BACKUP_DIR"
+echo "📦 Backing up any existing dotfiles to $BACKUP_DIR"
 mkdir -p "$BACKUP_DIR"
 
 link() {
   src="$DOTFILES_DIR/$1"
   dest="$HOME/$2"
-  
+
   if [ -e "$dest" ] || [ -L "$dest" ]; then
     echo "🔁 Backing up $dest"
     mv "$dest" "$BACKUP_DIR/"
   fi
-  
+
   echo "🔗 Linking $src → $dest"
   ln -s "$src" "$dest"
 }
 
-# List your dotfiles here
+# Home-level dotfiles
 link ".zshrc" ".zshrc"
-link ".vimrc" ".vimrc"
 link ".xinitrc" ".xinitrc"
-link ".config/nvim" ".config/nvim"
-link ".local/src" ".local/src"
+link ".vimrc" ".vimrc"
 
-echo "✅ Done!"
+# Neovim config
+link ".config/nvim" ".config/nvim"
+
+# Suckless builds (st, dwm, dmenu, etc.)
+link "st" ".local/src/st"
+link "dwm" ".local/src/dwm"
+link "dmenu" ".local/src/dmenu"
+
+echo "✅ Dotfiles setup complete!"
 
 #how to use this in new machine?
 #git clone git@github.com:yourusername/dotfiles.git ~/dotfiles
