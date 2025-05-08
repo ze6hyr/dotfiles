@@ -30,3 +30,7 @@ link ".local/src" ".local/src"
 
 echo "✅ Done!"
 
+#how to use this in new machine?
+#git clone git@github.com:yourusername/dotfiles.git ~/dotfiles
+#cd ~/dotfiles
+#./install.sh
