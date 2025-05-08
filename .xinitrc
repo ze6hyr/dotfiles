@@ -9,7 +9,6 @@ sysmodmap=/etc/X11/xinit/.Xmodmap
 
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
-
 fi
 
 if [ -f $sysmodmap ]; then
@@ -38,6 +37,6 @@ setxkbmap -layout us -variant dvorak &
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1 &
 xcompmgr &
 rosepine &
-dwmblocks &
+#dwmblocks &
 # xmodmap-remap2 & # this script execute in rosepine script
 exec dwm
