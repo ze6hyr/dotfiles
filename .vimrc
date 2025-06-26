@@ -44,7 +44,7 @@ set updatetime=50
 " set statusline=%F%m%r%h%w%=
 " set titlestring=%f
 " set titlestring=%Fset
-set statusline =%F%m%r%h%w%=%y-[%l:%c]
+set statusline =%F%m%r%h%w%=%y-[%l:%c] 
 set laststatus=2
 
 " statusline colorset
@@ -65,7 +65,7 @@ if has("persistent_undo")
 endif
 
 " Set background to transparent
-" hi Normal guibg=NONE
+ hi Normal guibg=NONE
 " hi Normal ctermbg=NONE guibg=NONE
 " hi NonText ctermbg=NONE guibg=NONE
 " hi LineNr ctermbg=NONE guibg=NONE
