@@ -3,7 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH_SYNTAX_HIGHLIGHTING_STYLE="dark"
 
 # Set name of the theme to load --- if set to "random", it will
@@ -73,9 +74,11 @@ ZSH_THEME="alanpeabody"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
+plugins+=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH_SYNTAX_HIGHLIGHTING_STYLE="dark"
 
 # User configuration
@@ -115,8 +118,10 @@ alias cin="xclip -selection c"
 alias cout="xclip -selection clipboard -o"
 
 #vim in bash super cool right # btw this is from luke smith
-set -o vi
+#set -o vi
 #alias nv=nvim
+alias cl=clear
+alias word=desktopeditors
 alias n=nvim
 alias v=vim
 alias qb=qutebrowser
@@ -140,3 +145,29 @@ echo -ne '\e[1 q'
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Only changing the escape key to `jk` in insert mode, we still
+# keep using the default keybindings `^[` in other modes
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+
+#ZVM_CURSOR_USER_DEFAULT
+#ZVM_CURSOR_BLOCK
+#ZVM_CURSOR_UNDERLINE
+#ZVM_CURSOR_BEAM
+#ZVM_CURSOR_BLINKING_BLOCK
+#ZVM_CURSOR_BLINKING_UNDERLINE
+#ZVM_CURSOR_BLINKING_BEAM
+
+# custom cursor style
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+
+
+# highlight behavior 
+ZVM_VI_HIGHLIGHT_FOREGROUND=green             # Color name
+ZVM_VI_HIGHLIGHT_FOREGROUND=#008800           # Hex value
+ZVM_VI_HIGHLIGHT_BACKGROUND=red               # Color name
+ZVM_VI_HIGHLIGHT_BACKGROUND=#ff0000           # Hex value
+ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline    # bold and underline
