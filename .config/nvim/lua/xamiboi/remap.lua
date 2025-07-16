@@ -2,7 +2,7 @@
 -- this down lines are my own configs
 -- Custom commands
 vim.api.nvim_create_user_command('W', 'w', {})
-vim.api.nvim_create_user_command('W', 'w', {})
+vim.api.nvim_create_user_command('Q', 'q', {})
 vim.api.nvim_create_user_command('Wq', 'wq', {})
 -- vim.api.nvim_set_keymap('i', 'jj', '<Esc>', { noremap = true, nowait = true }) -- this is like for jj to Esa
 
@@ -15,6 +15,9 @@ vim.keymap.set('n', '<Up>', '<cmd>resize +1<cr>', { desc = "Increase Window Heig
 vim.keymap.set('n', '<Down>', '<cmd>resize -1<cr>', { desc = "Increase Window Height" })
 vim.keymap.set('n', '<Right>', '<cmd>vertical resize +5<cr>', { desc = "Increase Window Height" })
 vim.keymap.set('n', '<Left>', '<cmd>vertical resize -5<cr>', { desc = "Increase Window Height" })
+
+-- lazygit command
+--vim.keymap.set('n', '<leader>g', ':LazyGit<CR>', { noremap = true, silent = true })
 
 -- this down lines are from primeagen i just copy
 
