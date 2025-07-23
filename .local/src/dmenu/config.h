@@ -1,11 +1,15 @@
-/* See LICENSE file for copyright and license details. */
+//search when do /* See LICENSE file for copyright and license details. */
 /* Default settings; can be overriden by command line. */
 
 static int topbar = 0;                      /* -b  option; if 0, dmenu appears at bottom     */
 /* -fn option overrides fonts[0]; default X11 font or font set */
 static const char *fonts[] = {
-	"FiraCodeNerdFont:size=8",
-	"FiraCodeNerdFont:pixelsize=8:antialias=true:autohint=true"
+//    "FiraCodeNerdFont:pixelsize=13:antialias=true:autohint=true",
+ //   "FiraCodeNerdFont:pixelsize=13:antialias=true:autohint=true"
+//    "JetBrains Mono:size=18",
+//    "JoyPixels:pixelsize=18:antialias=true:autohint=true"
+	"PxPlus IBM VGA 8x16:size=16",
+	"PxPlus IBM VGA 8x16:pixelsize=16:antialias=true:autohint=true"
 };
 static const unsigned int bgalpha = 0xe0;
 static const unsigned int fgalpha = OPAQUE;
