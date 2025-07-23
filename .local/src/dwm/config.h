@@ -2,13 +2,17 @@
 
 /* appearance */
 static const unsigned int borderpx  = 0;        /* border pixel of windows */
-static const unsigned int gappx     = 0;        /* 4 gaps between windows */
+static const unsigned int gappx     = 6;        /* 4 gaps between windows */
 static const unsigned int snap      = 8;        /* 32 snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "FiraCodeNerdFont:size=8", "FiraCodeNerdFont:pixelsize=8:antialias=true:autohint=true"};
-static const char dmenufont[]       = "FiraCodeNerdFont:size=8" ;
+//static const char *fonts[]          = { "JetBrains Mono:size=16", "JoyPixels:pixelsize=16:antialias=true:autohint=true"};
+//static const char dmenufont[]       = "JetBrains Mono:size=16";
+//static const char *fonts[]          = { "FiraCodeNerdFont:size16","FiraCodeNerdFont:pixelsize=16:antialias=true:autohint=true"};
+//static const char dmenufont[]          =  "FiraCodeNerdFont:size=16";
+static const char *fonts[]          = { "PxPlus IBM VGA 8x16:size=14", "PxPlus IBM VGA 8x16:pixelsize=16:antialias=true:autohint=true"};
+static const char dmenufont[]       = "PxPlus IBM VGA 8x16:size=16" ;
 static char normbgcolor[]           = "#222222";
 static char normbordercolor[]       = "#444444";
 static char normfgcolor[]           = "#bbbbbb";
@@ -28,7 +32,8 @@ static char *colors[][3] = {
 
 
 /* tagging */
-static const char *tags[] = { "1","2","3", "4", "5", "6", "7", "8", "9"};
+//static const char *tags[] = { "1","2","3", "4", "5", "6", "7", "8", "9"};
+static const char *tags[] = { "1t","2dr","3w", "4di", "5", "6", "7q", "8f", "9"};
 //static const char *tags[] = { " ", " ", " ", " ", "", };
 // static const char *tags[] = { " ", " ", " ", " ", " " };
 // static const char *tags[] = { "", "", "", "", "", "" };
@@ -44,9 +49,12 @@ static const Rule rules[] = {
     { "TelegramDesktop",    NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "obs",                NULL,     NULL,           0,         1,          0,           0,        -1 },
     { "Lutris",             NULL,     NULL,           0,         1,          0,           0,        -1 },
-//	{ "qutebrowser",        NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
-//  { "firefox",   		    NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
-    { "code",               NULL,     NULL,           1 << 4,    0,          0,          -1,        -1 },
+    { "draw",   		    NULL,     NULL,           1 << 1,    0,          0,          -1,        -1 },
+    { "whatsapp",   		NULL,     NULL,           1 << 2,    0,          0,          -1,        -1 },
+    { "discord",   		    NULL,     NULL,           1 << 3,    0,          0,          -1,        -1 },
+	{ "qutebrowser",        NULL,     NULL,           1 << 6,    0,          0,          -1,        -1 },
+    { "firefox",   		    NULL,     NULL,           1 << 7,    0,          0,          -1,        -1 },
+    //{ "code",               NULL,     NULL,           1 << 4,    0,          0,          -1,        -1 },
     { "St",                 NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,                 NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -88,8 +96,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_g,      togglebar,      {0} },
 	{ MODKEY,                       XK_f,	   zoom,           {0} },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_s,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_D,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_S,      incnmaster,     {.i = +1 } },
 	{ MODKEY,		                XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_e,      setlayout,      {.v = &layouts[1]} },
@@ -137,4 +145,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
