@@ -4,14 +4,14 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH_SYNTAX_HIGHLIGHTING_STYLE="dark"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="alanpeabody"
+#ZSH_THEME="alanpeabody"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -74,11 +74,11 @@ ZSH_THEME="alanpeabody"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
-plugins+=(zsh-vi-mode)
+#plugins+=(zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ./zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ZSH_SYNTAX_HIGHLIGHTING_STYLE="dark"
 
 # User configuration
@@ -120,6 +120,51 @@ alias cout="xclip -selection clipboard -o"
 #vim in bash super cool right # btw this is from luke smith
 #set -o vi
 #alias nv=nvim
+
+# PROMPT CODE
+bindkey -v              # Enable vi mode
+setopt prompt_subst     # Allow variables inside prompt
+
+# Mode symbols
+VI_INS="λ"
+VI_CMD="μ"
+VI_MODE=$VI_INS         # Default
+
+# Update mode symbol when mode changes
+function zle-keymap-select {
+  [[ $KEYMAP == vicmd ]] && VI_MODE=$VI_CMD || VI_MODE=$VI_INS
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+
+# Reset to insert mode after hitting Enter
+function zle-line-finish {  VI_MODE=$VI_INS }
+zle -N zle-line-finish
+
+# Also reset after Ctrl+C
+TRAPINT() {
+  VI_MODE=$VI_INS
+  return $((128 + $1))
+}
+
+
+# Git branch function
+git_branch() {
+  local branch
+  branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+  [[ -n $branch ]] && echo "on %{$fg[magenta]%}${branch}%{$reset_color%}"
+}
+
+#LEFT PROMPT
+# Colors (Zsh-safe)
+local mode='%{$fg[blue]%}${VI_MODE}%{$reset_color%}'
+local pwd='%{$fg[blue]%}%~%{$reset_color%}'
+local git='$(git_branch)'
+#local prompt_char='$'
+
+PROMPT="[${pwd}] (${git}) ${mode} $ "
+
+
 alias cl=clear
 alias word=desktopeditors
 alias n=nvim
@@ -127,9 +172,14 @@ alias v=vim
 alias qb=qutebrowser
 alias :q=exit
 alias l=ls -la
+
+alias notes='nvim ~/NOTES.md'
+alias notes-today='echo "## $(date +"%B %d, %Y - %H:%M")" >> ~/NOTES.md && nvim + ~/NOTES.md'
+
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/apps:$PATH"
 export PATH="/usr/bin:$PATH"
 export TERM=xterm-256color
 
@@ -148,7 +198,7 @@ echo -ne '\e[1 q'
 
 # Only changing the escape key to `jk` in insert mode, we still
 # keep using the default keybindings `^[` in other modes
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+##ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 #ZVM_CURSOR_USER_DEFAULT
 #ZVM_CURSOR_BLOCK
@@ -159,15 +209,17 @@ ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 #ZVM_CURSOR_BLINKING_BEAM
 
 # custom cursor style
-ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
-ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+##ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+##ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+##ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BEAM
+##ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 
 
 # highlight behavior 
-ZVM_VI_HIGHLIGHT_FOREGROUND=green             # Color name
-ZVM_VI_HIGHLIGHT_FOREGROUND=#008800           # Hex value
-ZVM_VI_HIGHLIGHT_BACKGROUND=red               # Color name
-ZVM_VI_HIGHLIGHT_BACKGROUND=#ff0000           # Hex value
-ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline    # bold and underline
+#ZVM_VI_HIGHLIGHT_FOREGROUND=green             # Color name
+#ZVM_VI_HIGHLIGHT_FOREGROUND=#008800           # Hex value
+##ZVM_VI_HIGHLIGHT_BACKGROUND=blue               # Color name
+#ZVM_VI_HIGHLIGHT_BACKGROUND=#ff0000           # Hex value
+#ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline    # bold and underline
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#525252"
