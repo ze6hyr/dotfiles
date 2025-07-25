@@ -126,8 +126,10 @@ bindkey -v              # Enable vi mode
 setopt prompt_subst     # Allow variables inside prompt
 
 # Mode symbols
-VI_INS="λ"
-VI_CMD="μ"
+VI_INS="$"
+VI_CMD=" "
+#VI_INS="λ"
+#VI_CMD="μ"
 VI_MODE=$VI_INS         # Default
 
 # Update mode symbol when mode changes
@@ -162,11 +164,11 @@ local pwd='%{$fg[blue]%}%~%{$reset_color%}'
 local git='$(git_branch)'
 #local prompt_char='$'
 
-PROMPT="[${pwd}] (${git}) ${mode} $ "
+PROMPT="${pwd}(${git}) ${mode} "
 
 
 alias cl=clear
-alias word=desktopeditors
+#alias word=desktopeditors
 alias n=nvim
 alias v=vim
 alias qb=qutebrowser
@@ -186,40 +188,5 @@ export TERM=xterm-256color
 # force blinking block cursor on shell prompt 
 # added this line cause tmux not supporting cursor blinking
 echo -ne '\e[1 q'
-#
-#set_blinking_cursor() {
-#    printf '\e[1 q'
-#}
-#precmd() { set_blinking_cursor }
-
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# Only changing the escape key to `jk` in insert mode, we still
-# keep using the default keybindings `^[` in other modes
-##ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-
-#ZVM_CURSOR_USER_DEFAULT
-#ZVM_CURSOR_BLOCK
-#ZVM_CURSOR_UNDERLINE
-#ZVM_CURSOR_BEAM
-#ZVM_CURSOR_BLINKING_BLOCK
-#ZVM_CURSOR_BLINKING_UNDERLINE
-#ZVM_CURSOR_BLINKING_BEAM
-
-# custom cursor style
-##ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
-##ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-##ZVM_OPPEND_MODE_CURSOR=$ZVM_CURSOR_BEAM
-##ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-
-
-# highlight behavior 
-#ZVM_VI_HIGHLIGHT_FOREGROUND=green             # Color name
-#ZVM_VI_HIGHLIGHT_FOREGROUND=#008800           # Hex value
-##ZVM_VI_HIGHLIGHT_BACKGROUND=blue               # Color name
-#ZVM_VI_HIGHLIGHT_BACKGROUND=#ff0000           # Hex value
-#ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline    # bold and underline
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#525252"
